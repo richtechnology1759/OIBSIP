@@ -1,0 +1,14 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+
+# Local API key and search history
+config.json
+search_history.json
+
+# macOS files
+.DS_Store
