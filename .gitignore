@@ -1,5 +1,22 @@
-.DS_Store
+# Python cache
 __pycache__/
 *.py[cod]
+
+# Virtual environments
 .venv/
 venv/
+
+# Local databases
+*.db
+
+# Local API keys and search history
+config.json
+search_history.json
+
+# Screen recordings
+screen_recordings/
+*.mp4
+*.mov
+
+# macOS files
+.DS_Store

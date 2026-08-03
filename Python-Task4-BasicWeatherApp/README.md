@@ -141,3 +141,26 @@ Both should remain excluded from GitHub.
 ## Author
 
 John Eseneh Obhiebo
+
+
+
+
+---
+
+## Screenshots
+
+### Home Screen
+
+![Home Screen](screenshots/home.png)
+
+### Current Weather
+
+![Current Weather](screenshots/current-weather.png)
+
+### Hourly Forecast
+
+![Hourly Forecast](screenshots/hourly-forecast.png)
+
+### Five-Day Forecast
+
+![Five-Day Forecast](screenshots/five-day-forecast.png)

@@ -6,9 +6,15 @@ __pycache__/
 .venv/
 venv/
 
+# Local databases
+*.db
+
 # Local API key and search history
 config.json
 search_history.json
+
+# Screen recordings
+screen_recordings/
 
 # macOS files
 .DS_Store

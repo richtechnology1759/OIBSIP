@@ -75,3 +75,27 @@ Python-Task2-BMICalculator/
 ## Author
 
 John Eseneh Obhiebo
+
+---
+
+## Screenshots
+
+### Home Screen
+
+![BMI Health Tracker Home](screenshots/home.png)
+
+### BMI Result
+
+![BMI Result](screenshots/bmi-result.png)
+
+### BMI History
+
+![BMI History](screenshots/history.png)
+
+### BMI Progress Chart
+
+![BMI Progress Chart](screenshots/chart.png)
+
+
+
+

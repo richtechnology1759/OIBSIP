@@ -1,120 +1,90 @@
-# Oasis Infobyte Python Internship Projects
+# OIBSIP – Oasis Infobyte Python Programming Internship
 
 Welcome to my Oasis Infobyte Python Programming Internship repository.
 
-This repository contains the desktop applications I developed during my internship using Python and Tkinter.
+This repository contains the Python projects I completed as part of the Oasis Infobyte Internship Program. Each project demonstrates practical programming skills, graphical user interface development, data handling, and problem-solving using Python.
 
 ---
 
-# 👨‍💻 About Me
+## Intern Information
 
-**John Eseneh Obhiebo**
-
-I am a self-taught Python developer passionate about building software that solves real-world problems. During this internship, I developed desktop applications that strengthened my skills in Python, GUI development, APIs, databases, and version control with Git.
+- **Name:** John Eseneh Obhiebo
+- **Internship:** Oasis Infobyte Internship
+- **Track:** Python Programming
+- **Repository:** OIBSIP
 
 ---
 
-# 🚀 Completed Projects
+## Completed Projects
 
-## Task 2 – BMI Health Tracker
+### Task 2 – BMI Health Tracker
 
-An advanced desktop application for calculating and tracking Body Mass Index.
+A desktop application that calculates Body Mass Index (BMI), stores user records in an SQLite database, tracks BMI progress over time, and allows users to export their records.
 
-**Technologies**
+**Technologies Used**
 
 - Python
 - Tkinter
 - SQLite
 - Matplotlib
 
-**Features**
-
-- BMI Calculation
-- Metric & Imperial Units
-- Multi-user Support
-- History Storage
-- CSV Export
-- BMI Trend Chart
-- Input Validation
+📂 Folder: `Python-Task2-BMICalculator`
 
 ---
 
-## Task 3 – Random Password Generator
+### Task 3 – Random Password Generator
 
-A secure password generator for creating strong passwords.
+A desktop application that generates strong and secure passwords with customizable options such as uppercase letters, lowercase letters, numbers, and symbols.
 
-**Technologies**
+**Technologies Used**
 
 - Python
 - Tkinter
 
-**Features**
-
-- Adjustable Password Length
-- Uppercase Letters
-- Lowercase Letters
-- Numbers
-- Symbols
-- Copy Password to Clipboard
-- Password History
-- Input Validation
+📂 Folder: `Python-Task3-RandomPasswordGenerator`
 
 ---
 
-## Task 4 – Basic Weather App (SkyCast)
+### Task 4 – SkyCast Weather Application
 
-A desktop application that retrieves real-time weather information using the OpenWeather API.
+A desktop weather application that retrieves live weather information using the OpenWeather API. It displays the current weather, hourly forecast, and five-day forecast with a clean user interface.
 
-**Technologies**
+**Technologies Used**
 
 - Python
 - Tkinter
+- OpenWeather API
 - Requests
 - Pillow
-- OpenWeather API
 
-**Features**
-
-- Search by City
-- Current Weather
-- Hourly Forecast
-- Five-Day Forecast
-- Celsius / Fahrenheit
-- Weather Icons
-- Automatic Location Detection
-- Search History
-- Error Handling
+📂 Folder: `Python-Task4-BasicWeatherApp`
 
 ---
 
-# 📁 Repository Structure
+## Repository Structure
 
 ```text
-OIBSIP/
-├── Python-Task2-BMICalculator/
-├── Python-Task3-RandomPasswordGenerator/
-├── Python-Task4-BasicWeatherApp/
-└── README.md
+OIBSIP
+│
+├── Python-Task2-BMICalculator
+├── Python-Task3-RandomPasswordGenerator
+└── Python-Task4-BasicWeatherApp
 ```
 
 ---
 
-# 🛠 Skills Demonstrated
+## About This Repository
 
-- Python Programming
-- GUI Development with Tkinter
-- SQLite Database
-- REST API Integration
-- Error Handling
-- Git & GitHub
-- Problem Solving
+Each project includes:
+
+- Source code
+- Project documentation
+- Screenshots
+- Requirements file
+- Demo video
 
 ---
 
-# 👤 Author
+## Thank You
 
-**John Eseneh Obhiebo**
-
-- Email: richtech.com@gmail.com
-- LinkedIn: https://www.linkedin.com/in/rich-obhiebo-43bbb63a5
-- Portfolio: https://richtech.cv
+Thank you for taking the time to review my internship projects.

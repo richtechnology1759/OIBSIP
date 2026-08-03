@@ -76,3 +76,27 @@ Python-Task3-RandomPasswordGenerator/
 ## Author
 
 John Eseneh Obhiebo
+
+
+
+
+
+---
+
+## Screenshots
+
+### Home Screen
+
+![Password Generator Home](screenshots/home.png)
+
+### Generated Password
+
+![Generated Password](screenshots/generated-password.png)
+
+### Password Options
+
+![Password Options](screenshots/about.png)
+
+### Recent Passwords
+
+![Password History](screenshots/history.png)

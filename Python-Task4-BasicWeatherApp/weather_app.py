@@ -46,7 +46,7 @@ class WeatherApp:
         self.api_key_text = tk.StringVar()
         self.location_text = tk.StringVar(value="Search for a city")
         self.temperature_text = tk.StringVar(value="--°")
-        self.condition_text = tk.StringVar(value="Weather details will appear here")
+        self.condition_text = tk.StringVar(value="Your weather will appear here")
         self.feels_text = tk.StringVar(value="Feels like --")
         self.humidity_text = tk.StringVar(value="--%")
         self.wind_text = tk.StringVar(value="--")
@@ -166,8 +166,14 @@ class WeatherApp:
         return "break"
 
     def build_ui(self):
+        header = tk.Frame(self.page, bg=NAVY)
+        header.pack(fill="x")
+
+        title_area = tk.Frame(header, bg=NAVY)
+        title_area.pack(expand=True)
+
         tk.Label(
-            self.page,
+            title_area,
             text="SkyCast Weather",
             font=("Helvetica", 29, "bold"),
             bg=NAVY,
@@ -175,12 +181,22 @@ class WeatherApp:
         ).pack()
 
         tk.Label(
-            self.page,
-            text="Current conditions, six-hour outlook, and five-day forecast.",
+            title_area,
+            text="Check today's weather and plan the days ahead.",
             font=("Helvetica", 12),
             bg=NAVY,
             fg=MUTED,
-        ).pack(pady=(6, 20))
+        ).pack(pady=(6, 0))
+
+        self.settings_button = self.make_button(
+            header,
+            "Settings",
+            self.toggle_settings,
+            LIGHT,
+        )
+        self.settings_button.place(relx=1.0, rely=0.0, anchor="ne")
+
+        tk.Frame(self.page, bg=NAVY, height=20).pack()
 
         self.build_api_card()
         self.build_search_card()
@@ -216,9 +232,11 @@ class WeatherApp:
         )
         self.status_label.pack(side="right")
 
-    def make_card(self, title, description):
+    def make_card(self, title, description, hidden=False):
         border = tk.Frame(self.page, bg="#475569", padx=1, pady=1)
-        border.pack(fill="x", pady=(0, 17))
+        if not hidden:
+            border.pack(fill="x", pady=(0, 17))
+
         card = tk.Frame(border, bg=CARD, padx=22, pady=20)
         card.pack(fill="both", expand=True)
 
@@ -239,7 +257,7 @@ class WeatherApp:
             fg=MUTED,
             anchor="w",
         ).pack(fill="x", pady=(4, 15))
-        return card
+        return border, card
 
     def make_button(self, parent, text, command, color=BLUE):
         button = tk.Label(
@@ -256,10 +274,31 @@ class WeatherApp:
         return button
 
     def build_api_card(self):
-        card = self.make_card(
-            "OpenWeather API Setup",
-            "Paste your free API key once. It is stored locally and ignored by Git.",
+        self.settings_border, card = self.make_card(
+            "App Settings",
+            "Add or update the OpenWeather API key used by this app.",
+            hidden=True,
         )
+
+        status_row = tk.Frame(card, bg=CARD)
+        status_row.pack(fill="x", pady=(0, 12))
+
+        self.api_status_label = tk.Label(
+            status_row,
+            text="API key saved" if self.api_key else "API key not set",
+            font=("Helvetica", 10, "bold"),
+            bg=CARD,
+            fg=GREEN if self.api_key else YELLOW,
+        )
+        self.api_status_label.pack(side="left")
+
+        tk.Label(
+            status_row,
+            text="The key stays on this computer and is excluded from Git.",
+            font=("Helvetica", 9),
+            bg=CARD,
+            fg=MUTED,
+        ).pack(side="left", padx=(12, 0))
 
         row = tk.Frame(card, bg=CARD)
         row.pack(fill="x")
@@ -275,13 +314,20 @@ class WeatherApp:
         )
         self.api_entry.pack(side="left", fill="x", expand=True, ipady=9)
 
-        self.make_button(row, "Save Key", self.save_api_key).pack(side="left", padx=(10, 0))
-        self.make_button(row, "Show / Hide", self.toggle_key, LIGHT).pack(side="left", padx=(8, 0))
+        self.make_button(row, "Save", self.save_api_key).pack(side="left", padx=(10, 0))
+
+        self.reveal_button = self.make_button(
+            row,
+            "Reveal",
+            self.toggle_key,
+            LIGHT,
+        )
+        self.reveal_button.pack(side="left", padx=(8, 0))
 
     def build_search_card(self):
-        card = self.make_card(
-            "Find Weather",
-            "Enter a city or ZIP code, or detect your approximate city from your public IP.",
+        self.search_border, card = self.make_card(
+            "Search a City",
+            "Enter a city or ZIP code, or use your approximate location.",
         )
 
         row = tk.Frame(card, bg=CARD)
@@ -310,7 +356,7 @@ class WeatherApp:
 
         tk.Label(
             self.history_frame,
-            text="Recent searches:",
+            text="Recent searches",
             font=("Helvetica", 10, "bold"),
             bg=CARD,
             fg=MUTED,
@@ -330,9 +376,9 @@ class WeatherApp:
         ).pack(fill="x", pady=(12, 0))
 
     def build_current_card(self):
-        card = self.make_card(
-            "Current Conditions",
-            "Live weather details for the selected location.",
+        _, card = self.make_card(
+            "Today's Weather",
+            "Current weather details for the selected location.",
         )
 
         row = tk.Frame(card, bg=CARD)
@@ -411,7 +457,7 @@ class WeatherApp:
             tk.Label(box, textvariable=variable, font=("Helvetica", 12, "bold"), bg=LIGHT, fg=WHITE).pack(anchor="w")
 
     def build_forecast_card(self, title, description, section):
-        card = self.make_card(title, description)
+        _, card = self.make_card(title, description)
         frame = tk.Frame(card, bg=CARD)
         frame.pack(fill="x")
 
@@ -442,16 +488,37 @@ class WeatherApp:
                 encoding="utf-8",
             )
             self.api_key = key
+            self.api_status_label.config(text="API key saved", fg=GREEN)
             self.set_status("API key saved locally.", GREEN)
             messagebox.showinfo(
                 "Saved",
-                "The API key was saved locally. It will not be uploaded to GitHub.",
+                "The API key was saved on this computer.",
             )
+            self.hide_settings()
         except OSError as error:
             messagebox.showerror("Save Error", str(error))
 
     def toggle_key(self):
-        self.api_entry.config(show="" if self.api_entry.cget("show") else "•")
+        hidden = bool(self.api_entry.cget("show"))
+        self.api_entry.config(show="" if hidden else "•")
+        self.reveal_button.config(text="Hide" if hidden else "Reveal")
+
+    def toggle_settings(self):
+        if self.settings_border.winfo_manager():
+            self.hide_settings()
+        else:
+            self.settings_border.pack(
+                fill="x",
+                pady=(0, 17),
+                before=self.search_border,
+            )
+            self.settings_button.config(text="Close Settings")
+
+    def hide_settings(self):
+        self.settings_border.pack_forget()
+        self.settings_button.config(text="Settings")
+        self.api_entry.config(show="•")
+        self.reveal_button.config(text="Reveal")
 
     def search_weather(self):
         city = self.city.get().strip()
